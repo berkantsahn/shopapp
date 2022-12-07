@@ -1,0 +1,32 @@
+<div class="row border m-0 p-3 mb-4" *ngIf="selectedProduct">
+  <div class="col-md-2">
+    <img class="img-fluid" src="/assets/img/{{ selectedProduct.imageUrl }}" alt="{{ selectedProduct.name }}">
+  </div>
+  <div class="col-md-8">
+    <h5 class="card-title">{{ selectedProduct.name }}</h5>
+    <p class="card-text">{{ selectedProduct.description }}</p>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-outline-success mb-2 block" (click)="addProductToCart(selectedProduct)">Sepete Ekle</button>
+    <button (click)="hideDetails()" class="btn btn-outline-danger block">Seçimi Kaldır</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4" *ngFor="let p of products">
+    <div class="card mb-3">
+      <img src="/assets/img/{{ p.imageUrl }}" alt="{{ p.name }}">
+      <div class="card-body">
+        <h4 class="card-title">
+          <a href="" class="">{{p.name}}</a>
+        </h4>
+        <small class="text-muted">
+          <i class="fas fa-turkish-lira-sign"></i> {{ p.price }}
+        </small>
+      </div>
+      <div class="card-footer text-center">
+        <button (click)="displayDetails(p)" class="btn btn-outline-dark btn-sm m-1">Ürün Detayları</button>
+        <button class="btn btn-outline-success btn-sm m-1" (click)="addProductToCart(p)">Sepete Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>

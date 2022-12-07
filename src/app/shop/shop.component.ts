@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cart } from '../model/cart.model';
 import { Category } from '../model/category.model';
 import { CategoryRepository } from '../model/category.repository';
@@ -7,8 +8,7 @@ import { ProductRepository } from '../model/product.repository';
 
 @Component({
   selector: 'shop',
-  templateUrl: 'shop.component.html',
-  styles: [`.pt-100 {padding-top:100px;}`]
+  templateUrl: 'shop.component.html'
 })
 
 export class ShopComponent implements OnInit {
@@ -16,16 +16,14 @@ export class ShopComponent implements OnInit {
   public selectedCategory?:Category;
   public productsPerPage = 3;
   public selectedPage = 1;
+  public selectedProducts: Product[] = [];
 
 
-  constructor(private productRepository: ProductRepository, private categoryRepository: CategoryRepository, private cart: Cart) { }
+  constructor(private productRepository: ProductRepository) { }
   get products(): Product[] {
     let index = (this.selectedPage - 1) * this.productsPerPage;
-    return this.productRepository.getProducts(this.selectedCategory).slice(index, index + this.productsPerPage);
-  }
-
-  get categories(): Category[]{
-    return this.categoryRepository.getCategories();
+    this.selectedProducts = this.productRepository.getProducts(this.selectedCategory);
+    return this.selectedProducts.slice(index, index + this.productsPerPage);
   }
 
   changeCategory(newCategory?:Category){
@@ -41,9 +39,13 @@ export class ShopComponent implements OnInit {
     this.selectedPage = p;
   }
 
-  addProductToCart(product: Product){
-    this.cart.addItem(product);
+  changePageSize(size: number){
+    this.productsPerPage = size;
+    this.changePage(1);
   }
 
+  getCategory(category: Category){
+    this.selectedCategory = category;
+  }
   ngOnInit() { }
 }
