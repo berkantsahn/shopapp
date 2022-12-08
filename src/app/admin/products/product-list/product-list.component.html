@@ -1,3 +1,4 @@
+<button type="button" class="btn btn-outline-dark" routerLink="/admin/main/products/create">Ürün Ekle</button>
 <table class="table table-hover table-striped">
   <thead>
     <tr>
@@ -16,10 +17,8 @@
       <td>{{ p.price }} <span class="">TL</span></td>
       <td>
         <button [routerLink]="['/admin/main/products/edit', p.id]" class="btn btn-outline-success btn-sm">Düzenle</button>
-        <button class="btn btn-outline-danger btn-sm m-2">Sil</button>
+        <button (click)="deleteProduct(p)" class="btn btn-outline-danger btn-sm m-2">Sil</button>
       </td>
     </tr>
   </tbody>
 </table>
-
-<button class="btn btn-outline-dark" routerLink="/admin/main/products/Create">Ürün Ekle</button>

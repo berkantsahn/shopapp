@@ -15,4 +15,8 @@ export class ProductListComponent implements OnInit {
   getProducts(): Product[]{
     return this.productRepository.getProducts();
   }
+
+  deleteProduct(product: Product){
+    this.productRepository.deleteProduct(product);
+  }
 }

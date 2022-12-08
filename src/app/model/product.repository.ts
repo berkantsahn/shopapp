@@ -16,8 +16,8 @@ export class ProductRepository implements OnInit {
 
   }
 
-  getProduct(id:number): Product | undefined{
-    return this.products.find(i => i.id === id);
+  getProduct(id:number): Product{
+    return this.products.find(i => i.id == id);
   }
 
   getProducts(category?:Category): Product[]{
@@ -27,5 +27,18 @@ export class ProductRepository implements OnInit {
     else {
       return this.products;
     }
+  }
+
+  saveProduct(product: Product){
+    if(product.id == null || product.id == 0){
+      this.restService.addProduct(product).subscribe(p => this.products.push(p));
+    } else {
+      this.restService.updateProduct(product).subscribe(p => this.products
+        .splice(this.products.findIndex(p => p.id == product.id), 1, product));
+    }
+  }
+
+  deleteProduct(product: Product){
+    this.restService.deleteProduct(product).subscribe(p => this.products.splice(this.products.findIndex(p => p.id == product.id), 1));
   }
 }

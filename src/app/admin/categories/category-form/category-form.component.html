@@ -1,1 +1,10 @@
-<p>category-form works!</p>
+<h5>{{ editing ? "Edit" : "Create" }} Kategori</h5>
+
+<form #form = "ngForm" (ngSubmit)="save(form)">
+  <div class="form-group">
+    <label>Ürün Adı</label>
+    <input type="text" class="form-control" name = "name" [(ngModel)]="category.name">
+  </div>
+  <button type="submit" class="btn btn-outline-dark">{{ editing ? "Edit": "Create" }} Kategori</button>
+  <button type="button" class="btn btn-outline-danger m-3" routerLink="/admin/main/categories">İptal Et</button>
+</form>
