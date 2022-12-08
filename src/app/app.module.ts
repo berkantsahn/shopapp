@@ -8,6 +8,7 @@ import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { ShopComponent } from './shop/shop.component';
 import { ShopModule } from './shop/shop.module';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -19,6 +20,7 @@ import { ShopModule } from './shop/shop.module';
       { path: 'shop', component: ShopComponent},
       { path: 'cart', component: CartDetailComponent},
       { path: 'checkout', component: CheckoutComponent},
+      { path: 'admin', loadChildren:() => import('./admin/admin.module').then(m => m.AdminModule)},
       { path: '**', redirectTo: "/shop"}
     ])
   ],

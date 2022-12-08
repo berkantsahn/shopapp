@@ -11,7 +11,7 @@ import { Product } from 'src/app/model/product.model';
 export class ProductListComponent implements OnInit {
 
   @Input() products: Product[] = [];
-  selectedProduct?: Product;
+  selectedProduct: Product;
 
   constructor(private cart: Cart, private router: Router){}
   ngOnInit(): void {
@@ -28,6 +28,6 @@ export class ProductListComponent implements OnInit {
   }
 
   hideDetails(){
-    this.selectedProduct = undefined;
+    this.selectedProduct = null;
   }
 }

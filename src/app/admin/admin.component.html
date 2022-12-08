@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="bg-dark p-2 text-white">
+      <h4>Admin Panel</h4>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-3">
+      <button routerLink="/shop" class="btn btn-outline-success block">Anasayfa</button>
+      <button routerLinkActive = "active" routerLink="/admin/main/products" class="btn btn-outline-dark block mt-2">Ürünler</button>
+      <button routerLinkActive = "active" routerLink="/admin/main/categories" class="btn btn-outline-dark block mt-2">Kategoriler</button>
+      <button routerLinkActive = "active" routerLink="/admin/main/orders" class="btn btn-outline-dark block mt-2">Siparişler</button>
+      <button (click)="logout()" class="btn btn-outline-danger block mt-2">Çıkış Yap</button>
+    </div>
+    <div class="col-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
